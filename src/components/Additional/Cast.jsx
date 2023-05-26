@@ -9,11 +9,10 @@ const Cast = () => {
   const { id } = useParams();
 
   useEffect(() => {
-    const getData = async (id) => {
+    const getData = async id => {
       const response = await getMoviesCast(Number(id));
 
       setCast(response.data.cast);
-      // console.log(response.data.cast);
     };
 
     getData(id);
