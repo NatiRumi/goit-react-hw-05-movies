@@ -47,7 +47,7 @@ const MoviesDetails = () => {
 
     const handleClick = () => {
         navigate(location.state)
-        console.log(location)
+        // console.log(location)
     }
 
 	return(
