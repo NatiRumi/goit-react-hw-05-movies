@@ -1,0 +1,14 @@
+.movieContainer {
+    display: flex;
+    padding-bottom: 10px;
+    border-bottom: 2px solid gray;
+}
+
+.movieImg {
+    width: 200px;
+    height: auto;
+}
+
+.movieInfo {
+ padding-left: 20px;
+}
