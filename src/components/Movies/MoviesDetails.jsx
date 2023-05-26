@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { useState, useEffect } from 'react';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { getMoviesDetails } from '../../API/Api';
@@ -13,6 +13,7 @@ const MoviesDetails = () => {
     const { id } = useParams()
     const navigate = useNavigate()
     const location = useLocation()
+    const backLinkLocationRef = useRef(location.state ?? '/');
 
     useEffect(() => {
 		const getData = async (id) => {
@@ -46,7 +47,7 @@ const MoviesDetails = () => {
 	}, [id])
 
     const handleClick = () => {
-        navigate(location.state)
+        navigate(backLinkLocationRef.current)
         // console.log(location)
     }
 
