@@ -2,12 +2,14 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { getMoviesDetails } from '../../API/Api';
-import css from './MovieStyle.module.css'
+import css from './MovieStyle.module.css';
+// import Additional from 'components/Additional/Additional';
 
 
 const MoviesDetails = () => {
     const [movies, setMovies] = useState([])
     const [img, setImg] = useState('')
+    const [genres, setGenres] = useState('')
     const { id } = useParams()
     const navigate = useNavigate()
     const location = useLocation()
@@ -19,14 +21,33 @@ const MoviesDetails = () => {
             
 			setMovies(response.data);
             setImg(path);
-            // console.log(movies.genres[0].name);
+            // console.log(response.data.genres);
+
+            const getGenres = (array) => {
+                if (array.length > 0) {
+                  const allGenres = [];
+                  array.forEach(item => {
+                    const genreName = item.name;
+                    if (!genreName) {
+                      return;
+                    }
+                    allGenres.push(genreName);
+                  });
+                  return allGenres.join(', ');
+                } else {
+                  return '';
+                }
+              };
+              setGenres(getGenres(response.data.genres)) 
 		}
 
-		getData(id)
+		getData(id);
+        
 	}, [id])
 
     const handleClick = () => {
         navigate(location.state)
+        console.log(location)
     }
 
 	return(
@@ -40,9 +61,10 @@ const MoviesDetails = () => {
                     <h3>Overviev</h3>
                     <p>{movies.overview}</p>
                     <h3>Genres</h3>
-                    {/* <p>{movies.genres[0].name}</p> */}
+                    <p>{genres}</p>
                 </div>   
             </div>
+            {/* <Additional /> */}
         </div>
     )
 }
