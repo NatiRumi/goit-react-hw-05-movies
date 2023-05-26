@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { getMoviesDetails } from '../../API/Api';
 import css from './MovieStyle.module.css'
 
@@ -9,6 +9,8 @@ const MoviesDetails = () => {
     const [movies, setMovies] = useState([])
     const [img, setImg] = useState('')
     const { id } = useParams()
+    const navigate = useNavigate()
+    const location = useLocation()
 
     useEffect(() => {
 		const getData = async (id) => {
@@ -21,12 +23,15 @@ const MoviesDetails = () => {
 		}
 
 		getData(id)
-	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [id])
+
+    const handleClick = () => {
+        navigate(location.state)
+    }
 
 	return(
         <div>
-            <button type='button'>Go back</button>
+            <button type='button'className={css.button} onClick={handleClick}>Go back</button>
             <div className={css.movieContainer}>
                 <img src={img} alt={movies.title} className={css.movieImg}></img>
                 <div className={css.movieInfo}>

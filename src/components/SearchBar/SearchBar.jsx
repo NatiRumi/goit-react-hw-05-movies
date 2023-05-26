@@ -1,29 +1,41 @@
 import React from 'react';
-import { useSearchParams } from 'react-router-dom';
+import css from './SearchBarStyle.module.css'
 
-const SearchBar = ({ onSubmit }) => {
-  const [params, setParams] = useSearchParams();
-  setParams({filter: 'gfgf'})
-  console.log(params.get('filter'))
+
+const SearchBar = ({ onSubmit, setSearchParams }) => {
+  
+  
+  // console.log(searchparams.get('filter'))
+
+  // const handleChange = ({target}) => {
+  //   setSearchParams({filter: target.value})
+  //   // console.log(target.value)
+  // }
 
   return (
-    <form onSubmit={e => {
-        e.preventDefault();
-        onSubmit(e.target.text.value);
-      }}>
-      <input
-        className="input"
-        type="text"
-        name="text"
-        autoComplete="off"
-        autoFocus
-        placeholder="Search movie"
-      />
+    <div className={css.formContainer}><form onSubmit={e => {
+      e.preventDefault();
+      onSubmit(e.target.text.value);
+      setSearchParams({query: e.target.text.value.trim()});
+      // console.log(e.target.text.value)
+    }} >
+    <input
+      className="input"
+      type="text"
+      name="text"
+      autoComplete="off"
+      autoFocus
+      placeholder="Search movie"
+      // onChange={handleChange}
+    />
 
-      <button type="submit" className="button">
-        <span className="button-label">Search</span>
-      </button>
-    </form>
+    <button type="submit" className={css.button}>
+      <span className={css.buttonLabel}>Search</span>
+    </button>
+  </form>
+
+    </div>
+    
   );
 };
 

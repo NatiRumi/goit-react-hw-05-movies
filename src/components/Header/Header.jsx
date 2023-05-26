@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink, Outlet } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import css from './HeaderStyle.module.css';
 
 const Header = () => {
@@ -13,7 +13,6 @@ const Header = () => {
           Movies
         </NavLink>
       </div>
-      <Outlet />
     </>
   );
 };

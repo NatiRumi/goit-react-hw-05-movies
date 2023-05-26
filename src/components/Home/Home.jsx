@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { getFilmsList } from '../../API/Api';
 
 const Home = () => {
   const [movies, setMovies] = useState([]);
+  const location = useLocation();
 
   useEffect(() => {
     const getData = async () => {
@@ -24,7 +25,7 @@ const Home = () => {
       <ul>
         {movies.filter(movie =>{ return (movie.title)}).map(movie => (
           <li key={movie.id}>
-            <Link to={movie.id.toString()}>{movie.title}</Link>
+            <Link to={`movies/${movie.id.toString()}`} state={location}>{movie.title}</Link>
         </li>
         ))}
       </ul>
