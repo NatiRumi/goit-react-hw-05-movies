@@ -1,0 +1,1 @@
+{"version":3,"file":"static/css/930.ae6f330a.chunk.css","mappings":"AAAA,iCAEI,WAAY,CADZ,WAEJ,CAEA,kCACC,oBACD","sources":["components/Additional/AdditionalStyle.module.css"],"sourcesContent":[".actorImg {\n    width: 100px;\n    height: auto;\n}\n\n.actorLink {\n list-style-type: none;\n}"],"names":[],"sourceRoot":""}
